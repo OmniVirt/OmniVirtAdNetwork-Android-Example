@@ -33,12 +33,12 @@ repositories {
 2. **Create one or more Ad Spaces** for your app (for each Ad Space you can select different content and will get separate reporting)
 3. Keep the **AdSpace ID** assigned for further use.
 
-Now the ad space is ready. Next step is to enable ad on your application.
+Now an Ad Space is ready. Next step is to enable the Ad on your application.
 
 
 ### Initialize a `VRAd` instance
  
-First of all, create an `VRAd` instance with **AdSpace ID** provided by step above.
+First of all, create an `VRAd` instance with **AdSpace ID** provided by step above along with the callback listener.
 ```java
 public class MainActivity extends AppCompatActivity {
     VRAd vrAd;
@@ -72,6 +72,29 @@ Ad will be loaded in the background and once it is ready, `onAdStatusChanged` wi
 
 And it's all ... done !
 
+### Callback
+
+When the state of VRAd has been changed, `onAdStatusChanged` will be called with the new state in the parameter. There are different 5 states in total.
+
+- **AdState.Loading** - Ad is being loaded in the background.
+
+- **AdState.Ready** - Ad is ready to be shown. You can call `show()` function at this state to display the loaded ad.
+
+- **AdState.Showing** - Ad is being displayed.
+
+- **AdState.Completed** - Ad display is finished.
+
+- **AdState.Failed** - Ad could not be loaded.
+
+
+### Unload the VRAd
+
+*`VRAd` will be unloaded automatically when ad is finished displaying.* But if you want to force closing the displaying ad before it finishes, you can call the following method.
+
+```java
+vrAd.unload();
+```
+
 # Questions?
 
-Please email us at [contact@omnivirt.com](mailto:contact@omnivirt.com)
+If you have any question, please don't hesitate to email us at [contact@omnivirt.com](mailto:contact@omnivirt.com) !
