@@ -1,4 +1,5 @@
 # OmniVirt Ad Network: Monetize your VR app with seamless experience
+![API](https://img.shields.io/badge/API-17%2B-blue.svg?style=flat)
 
 ![Screenshot](https://github.com/OmniVirt/OmniVirtAdNetwork-Android-Example/blob/master/screenshotad.jpg?raw=true)
 
