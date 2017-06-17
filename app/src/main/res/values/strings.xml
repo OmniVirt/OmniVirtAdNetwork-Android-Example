@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">OmniVirt Ad Network Example</string>
+    <string name="load_ad">Load Ad</string>
+</resources>
