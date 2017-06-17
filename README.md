@@ -1,4 +1,4 @@
-# OmniVirt Ad Network: Monetize your VR App with Seamless Experience
+# OmniVirt Ad Network: Monetize your VR app with seamless experience
 
 ![Screenshot](https://github.com/OmniVirt/OmniVirtAdNetwork-Android-Example/blob/master/screenshotad.jpg?raw=true)
 
