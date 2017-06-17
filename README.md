@@ -1,6 +1,6 @@
 # OmniVirt Ad Network: Monetize your VR App with Seamless Experience
 
-![Screenshot](https://github.com/nuuneoi/OmniVirtAdNetwork-Android-Example/blob/master/screenshotad.jpg?raw=true)
+![Screenshot](https://github.com/OmniVirt/OmniVirtAdNetwork-Android-Example/blob/master/screenshotad.jpg?raw=true)
 
 **OmniVirt Ad Network** provides you ***an advertising platform*** enables developers and publishers to monetize their apps with engaging VR content in seamless user experience way.
 
