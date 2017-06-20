@@ -94,7 +94,7 @@ You can reload an ad to make it ready for the next session by implementing the c
 @Override
 public void onAdStatusChanged(VRAd vrAd, AdState adState) {
     ...
-    if (vrAd.isCompleted() || vrAd.isFailed()) {
+    if (vrAd.isCompleted()) {
         vrAd.load(MainActivity.this);
     }
 }

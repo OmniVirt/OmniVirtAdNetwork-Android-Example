@@ -12,7 +12,7 @@ import com.omnivirt.vrkit.VRAd;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLoadAd = null;
+    private Button btnShowAd = null;
     private TextView tvLogger = null;
 
     private VRAd vrAd = null;
@@ -28,15 +28,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Loading and starting VR Ad using a button
         //
-        btnLoadAd = (Button) findViewById(R.id.start_ad_button);
-        btnLoadAd.setOnClickListener(new View.OnClickListener() {
+        btnShowAd = (Button) findViewById(R.id.start_ad_button);
+        btnShowAd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                btnLoadAd.setEnabled(false);
-                vrAd.load(MainActivity.this);
+                btnShowAd.setEnabled(false);
+                vrAd.show();
             }
         });
 
         tvLogger = (TextView) findViewById(R.id.tvLogger);
+
+        // Load ad in background
+        vrAd.load(MainActivity.this);
     }
 
     @Override
@@ -57,28 +60,39 @@ public class MainActivity extends AppCompatActivity {
 
     private OnVRAdInteractionListener vrAdInteractionListener = new OnVRAdInteractionListener() {
         @Override
-        public void onAdStatusChanged(VRAd instance, AdState status) {
+        public void onAdStatusChanged(VRAd vrAd, AdState status) {
             switch (status) {
                 case None:
                     break;
                 case Loading:
                     MainActivity.this.log("Ad state is loading");
+                    btnShowAd.setText("Loading Ad");
+                    btnShowAd.setEnabled(false);
                     break;
                 case Ready:
                     MainActivity.this.log("Ad state is ready");
-                    vrAd.show();
+                    btnShowAd.setText("Show Ad");
+                    btnShowAd.setEnabled(true);
                     break;
                 case Showing:
                     MainActivity.this.log("Ad state is showing");
+                    btnShowAd.setText("Ad is showing");
+                    btnShowAd.setEnabled(false);
                     break;
                 case Completed:
                     MainActivity.this.log("Ad state is completed");
-                    btnLoadAd.setEnabled(true);
+                    btnShowAd.setText("Ad completed");
+                    btnShowAd.setEnabled(false);
                     break;
                 case Failed:
                     MainActivity.this.log("Ad state is failed");
-                    btnLoadAd.setEnabled(true);
+                    btnShowAd.setText("Failed to load ad");
+                    btnShowAd.setEnabled(false);
                     break;
+            }
+            if (vrAd.isCompleted()) {
+                // Reload an ad in background
+                vrAd.load(MainActivity.this);
             }
         }
     };
