@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
         //
         // Load an ad in background
         //
-        vrAd.load(MainActivity.this);
+        vrAd.loadAd(MainActivity.this);
     }
 
     @Override
