@@ -46,13 +46,21 @@ public class MainActivity extends AppCompatActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //
+        // Create an VRAd instance
+        // Replace ADSPACE_ID with one you got from OmniVirt.com
+        //
         vrAd = new VRAd(ADSPACE_ID, new OnVRAdInteractionListener() {
             @Override
             public void onAdStatusChanged(VRAd vrAd, AdState adState) {
                 // Handle the Ad Status Changed here
             }
         });
-        vrAd.load();
+        
+        //
+        // Load in background
+        //
+        vrAd.load(MainActivity.this);
     }
 
 }
