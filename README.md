@@ -41,7 +41,7 @@ Now an Ad Space is ready. Next step is to enable the Ad on your application.
  
 First of all, create an `VRAd` instance with **AdSpace ID** provided by step above along with the callback listener.
 ```java
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     VRAd vrAd;
     
     @Override
