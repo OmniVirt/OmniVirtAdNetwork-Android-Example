@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         // This method will close VR Ad when user hit back button.
         //
-        if (vrAd.getStatus() == AdState.Showing) {
+        if (vrAd.getState() == AdState.Showing) {
             vrAd.unload();
             return;
         }

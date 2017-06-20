@@ -14,7 +14,7 @@ Visit [omnivirt.com](https://omnivirt.com/) to create ad space to start monetizi
 Add the following lines to `build.gradle` of your application module.
 ```
 dependencies {
-    compile 'com.omnivirt:omnivirt-android-sdk:0.10.5'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.10.6'
 } 
  
 repositories {
@@ -94,7 +94,7 @@ You can reload an ad to make it ready for the next session by implementing the c
 @Override
 public void onAdStatusChanged(VRAd vrAd, AdState adState) {
     ...
-    if (adState == AdState.Completed || adState == AdState.Failed) {
+    if (vrAd.isCompleted() || vrAd.isFailed()) {
         vrAd.load(MainActivity.this);
     }
 }
