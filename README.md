@@ -103,7 +103,18 @@ public void onAdStatusChanged(VRAd vrAd, AdState adState) {
 
 ### Callback
 
-When the state of VRAd has been changed, `onAdStatusChanged` callback function will be called with the new state in the parameter. There are different 5 states in total.
+When the state of VRAd has been changed, `onAdStatusChanged` callback function will be called with the new state in the `adState` parameter.
+
+```java
+...
+@Override
+public void onAdStatusChanged(VRAd vrAd, AdState adState) {
+    // Check adState
+}
+...
+```
+
+There are different 5 states in total.
 
 - **AdState.Loading** - Ad is being loaded in the background.
 
