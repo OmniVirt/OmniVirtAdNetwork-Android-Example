@@ -14,7 +14,7 @@ Visit [omnivirt.com](https://omnivirt.com/) to create ad space to start monetizi
 Add the following lines to `build.gradle` of your application module.
 ```
 dependencies {
-    compile 'com.omnivirt:omnivirt-android-sdk:0.10.3'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.10.5'
 } 
  
 repositories {
@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         });
         
         //
-        // Load in background
+        // Load an ad in background
         //
         vrAd.load(MainActivity.this);
     }
@@ -66,20 +66,40 @@ public class MainActivity extends Activity {
 }
 ```
 
-Ad will be loaded in the background and once it is ready, `onAdStatusChanged` will be called with `Ready` state. If you want ad to start playing automatically, just add the following code snippet to the callback function.
+Ad will be loaded in the background and once it is ready, `onAdStatusChanged` will be called with `Ready` state.
+
+### Show an Ad
+
+If you want ad to start playing automatically, just add the following code snippet to the callback function.
 
 ```java
-  ...
-  @Override
-  public void onAdStatusChanged(VRAd vrAd, AdState adState) {
-    if (adState == AdState.Ready) {
-      vrAd.show();
+...
+@Override
+public void onAdStatusChanged(VRAd vrAd, AdState adState) {
+    if (vrAd.isLoaded()) {
+        vrAd.show();
     }
-  }
-  ...
+}
+...
 ```
 
 And it's all ... done !
+
+### Reload an Ad
+
+You can reload an ad to make it ready for the next session by implementing the code inside `onAdStatusChanged` like shown below.
+
+```java
+...
+@Override
+public void onAdStatusChanged(VRAd vrAd, AdState adState) {
+    ...
+    if (adState == AdState.Completed || adState == AdState.Failed) {
+        vrAd.load(MainActivity.this);
+    }
+}
+...
+```
 
 ### Callback
 
