@@ -2,6 +2,7 @@ package com.omnivirt.adnetwork.example;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,15 +40,21 @@ public class MainActivity extends AppCompatActivity {
         tvLogger = (TextView) findViewById(R.id.tvLogger);
 
         // Load ad in background
-        vrAd.load(MainActivity.this);
+        vrAd.loadAd(MainActivity.this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        vrAd.unloadAd();
     }
 
     @Override
     public void onBackPressed() {
         // This method will close VR Ad when user hit back button.
         //
-        if (vrAd.getState() == AdState.Showing) {
-            vrAd.unload();
+        if (vrAd.isShowing()) {
+            vrAd.unloadAd();
             return;
         }
 
@@ -92,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (vrAd.isCompleted()) {
                 // Reload an ad in background
-                vrAd.load(MainActivity.this);
+                vrAd.loadAd(MainActivity.this);
             }
         }
     };

@@ -14,7 +14,7 @@ Visit [omnivirt.com](https://omnivirt.com/) to create ad space to start monetizi
 Add the following lines to `build.gradle` of your application module.
 ```
 dependencies {
-    compile 'com.omnivirt:omnivirt-android-sdk:0.10.6'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.11.4'
 } 
  
 repositories {
@@ -67,6 +67,18 @@ public class MainActivity extends Activity {
 ```
 
 Ad will be loaded in the background and once it is ready, `onAdStatusChanged` will be called with `Ready` state.
+
+Also call `vrAd.unloadAd()` inside `onDestroy()` to let it be destroyed all along with an Activity.
+
+```java
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        vrAd.unloadAd();
+    }
+
+```
+
 
 ### Show an Ad
 
@@ -126,14 +138,25 @@ There are different 5 states in total.
 
 - **AdState.Failed** - Ad could not be loaded.
 
+### Handle Back Pressed
 
-### Unload the VRAd
-
-*`VRAd` will be unloaded automatically when ad is finished displaying.* But if you want to force closing the displaying ad before it finishes, you can call the following method.
+In case that user press **back button** while ad is playing, `onBackPressed` is needed to be handled to prevent unexpected behavior. For example, if you want to let ad close and return to your normal Activity, this code snippet is needed to be added in your Activity.
 
 ```java
-vrAd.unload();
+    @Override
+    public void onBackPressed() {
+        // This method will close VR Ad when user hit back button.
+        //
+        if (vrAd.isShowing()) {
+            vrAd.unloadAd();
+            return;
+        }
+
+        super.onBackPressed();
+    }
 ```
+
+But if you want to prevent user from pressing back, you can just comment `vrAd.unloadAd();` and it will work like you wish.
 
 # Questions?
 
