@@ -63,22 +63,17 @@ public class MainActivity extends Activity {
         vrAd.load(MainActivity.this);
     }
 
-}
-```
-
-Ad will be loaded in the background and once it is ready, `onAdStatusChanged` will be called with `Ready` state.
-
-Also call `vrAd.unloadAd()` inside `onDestroy()` to let it be destroyed all along with an Activity.
-
-```java
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Let vrAd be destroyed all along the Activity
         vrAd.unloadAd();
     }
 
+}
 ```
 
+Ad will now be loaded **in the background** and once it is ready, `onAdStatusChanged` will be called with `Ready` state.
 
 ### Show an Ad
 
@@ -95,20 +90,19 @@ public void onAdStatusChanged(VRAd vrAd, AdState adState) {
 ...
 ```
 
-And it's all ... done !
+And it's all ... done ! Ad will now be shown on the screen.
 
 ### Reload an Ad
 
-You can reload an ad to make it ready for the next session by implementing the code inside `onAdStatusChanged` like shown below.
+**`load(...)` is needed to be called once per ad served.** You can reload an ad to make it ready for the next session by implementing the code inside `onAdStatusChanged` like shown below.
 
 ```java
 ...
 @Override
 public void onAdStatusChanged(VRAd vrAd, AdState adState) {
     ...
-    if (vrAd.isCompleted()) {
+    if (vrAd.isCompleted())
         vrAd.load(MainActivity.this);
-    }
 }
 ...
 ```
