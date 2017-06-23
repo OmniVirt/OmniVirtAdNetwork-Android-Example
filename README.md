@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
         //
         // Load an ad in background
         //
-        vrAd.load(MainActivity.this);
+        vrAd.loadAd(MainActivity.this);
     }
 
     @Override
@@ -94,7 +94,7 @@ And it's all ... done ! Ad will now be shown on the screen.
 
 ### Reload an Ad
 
-**`load(...)` is needed to be called once per ad served.** You can reload an ad to make it ready for the next session by implementing the code inside `onAdStatusChanged` like shown below.
+**`loadAd(...)` is needed to be called once per ad served.** You can reload an ad to make it ready for the next session by implementing the code inside `onAdStatusChanged` like shown below.
 
 ```java
 ...
@@ -102,7 +102,7 @@ And it's all ... done ! Ad will now be shown on the screen.
 public void onAdStatusChanged(VRAd vrAd, AdState adState) {
     ...
     if (vrAd.isCompleted())
-        vrAd.load(MainActivity.this);
+        vrAd.loadAd(MainActivity.this);
 }
 ...
 ```
