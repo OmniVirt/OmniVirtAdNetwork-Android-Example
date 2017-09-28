@@ -14,7 +14,7 @@ Visit [omnivirt.com](https://omnivirt.com/) to create ad space to start monetizi
 Add the following lines to `build.gradle` of your application module.
 ```
 dependencies {
-    compile 'com.omnivirt:omnivirt-android-sdk:0.11.4'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.12.0'
 } 
  
 repositories {
